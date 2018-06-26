@@ -1,7 +1,7 @@
 version: 2
 
 jobs:
-  clojure_test:
+  build: # FIXME: use workflow instead.
     working_directory: ~/nano-id/clj
     docker:
       - image: circleci/clojure:lein-2.7.1
