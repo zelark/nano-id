@@ -1,10 +1,11 @@
 # nano-id
-A unique string ID generator for Clojure and ClojureScript.
+A tiny, secure, URL-friendly unique string ID generator for Clojure and ClojureScript.
 
+[![Clojars Project](https://img.shields.io/clojars/v/nano-id.svg)](https://clojars.org/nano-id)
 [![CircleCI](https://circleci.com/gh/zelark/nano-id/tree/master.svg?style=svg)](https://circleci.com/gh/zelark/nano-id/tree/master)
 
 ### Secure
-nano-id uses [SecureRandom](https://docs.oracle.com/javase/7/docs/api/java/security/SecureRandom.html) and [crypto](https://developer.mozilla.org/en-US/docs/Web/API/Window/crypto) to generate cryptographically strong random IDs with a proper distribution of characters.
+nano-id uses [SecureRandom](https://docs.oracle.com/javase/7/docs/api/java/security/SecureRandom.html) (Clojure) and [crypto](https://developer.mozilla.org/en-US/docs/Web/API/Window/crypto) (ClojureScript) to generate cryptographically strong random IDs with a proper distribution of characters.
 
 ### Compact
 nano-id generates compact IDs with just 21 characters. By using a larger alphabet than UUID, nano-id can generate a greater number of unique IDs, when compared to UUID, with fewer characters (21 versus 36).
