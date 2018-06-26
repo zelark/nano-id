@@ -1,0 +1,20 @@
+version: 2
+
+jobs:
+  clojure_test:
+    working_directory: ~/nano-id/clj
+    docker:
+      - image: circleci/clojure:lein-2.7.1
+    environment:
+      LEIN_ROOT: nbd
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - restore_cache:
+          key: nano-id-{{ checksum "project.clj" }}
+      - run: lein deps
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: nano-id-{{ checksum "project.clj" }}
+      - run: lein test
