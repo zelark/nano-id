@@ -22,8 +22,9 @@
 
   :doo { :alias { :browsers [:chrome :firefox] }}
 
-  :aliases { "deploy" ["do" "clean," "deploy" "clojars"]
-             "test"   ["do" ["clean"] ["test"] ["doo" "browsers" "test" "once"]] }
+  :aliases { "deploy"    ["do" "clean," "deploy" "clojars"]
+             "test"      ["do" ["clean"] ["test"]]
+             "cljs-test" ["do" ["doo" "browsers" "test" "once"]] }
 
   :cljsbuild {
     :builds [{ :id           "test"
