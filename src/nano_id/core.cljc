@@ -1,30 +1,17 @@
 (ns nano-id.core
-  (:require [clojure.string :as str])
-  (:import  #?(:clj java.security.SecureRandom)))
+  (:require [clojure.string :as str]
+            [nano-id.random :as random]))
 
 
 (def ^:const alphabet "_~0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 
-(def secure-random
-  #?(:clj  (SecureRandom.)
-     :cljs js/crypto))
-
-
-(defn ^:private rand-bytes
-  "Returns a random byte array of the specified size."
-  [size]
-  #?(:clj  (let [seed (byte-array size)]
-             (.nextBytes secure-random seed)
-             seed)
-     :cljs (let [seed (js/Uint8Array. size)]
-             (.getRandomValues secure-random seed)
-             (array-seq seed))))
-
-
 (defn nano-id
-  ([]
-   (nano-id 21))
+  "Secure random ID generator.
+  It takes `size`, which defines ID length, by default it's 21."
+  ([] (nano-id 21))
   ([size]
-   (-> (for [byte (rand-bytes size)] (nth alphabet (bit-and byte 0x3f)))
-       str/join)))       
+   (let [mask 0x3f
+         id   (for [byte (random/random-bytes size)]
+                (nth alphabet (bit-and byte mask)))]
+     (str/join id))))
