@@ -4,9 +4,6 @@
 
   :license { :name "The MIT License"
              :url "https://opensource.org/licenses/MIT" }
-
-  :dependencies [[org.clojure/clojure       "1.9.0"    :scope "provided"]
-                 [org.clojure/clojurescript "1.10.238" :scope "provided"]]
   
   :plugins [[lein-figwheel  "0.5.16"]
             [lein-doo       "0.1.10"]
@@ -17,8 +14,7 @@
   :profiles {
     :dev {
       :dependencies [[org.clojure/clojure       "1.9.0"]
-                     [org.clojure/clojurescript "1.10.238"]
-                     [org.mozilla/rhino         "1.7.10"]] }}
+                     [org.clojure/clojurescript "1.10.238"]] }}
 
   :doo { :alias { :browsers [:chrome :firefox] }}
 
@@ -31,4 +27,4 @@
                :source-paths ["src" "test"]
                :compiler     { :main          nano-id.runner
                                :output-to     "target/unit-test.js"
-                               :optimizations :whitespace }}]})
+                               :optimizations :simple }}]})
