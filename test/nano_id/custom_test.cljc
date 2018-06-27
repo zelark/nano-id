@@ -2,17 +2,13 @@
   (:require
     #?(:clj  [clojure.test :refer :all]
        :cljs [cljs.test :refer-macros [deftest is testing]])
+    [nano-id.util :as util]
     [nano-id.custom :refer [nano-id]]))
 
 
 (def alphabet "abcdefghijklmnopqrstuvwxyz")
 
 (def nano-ids (repeatedly #(nano-id alphabet 5)))
-
-
-(defn close? [^double x ^double y]
-  (let [precision 0.05]
-    (< (Math/abs (- x y)) precision)))
 
 
 (deftest test-custom-nano-id
@@ -24,7 +20,7 @@
           chars  (->> ids
                       (map frequencies)
                       (reduce #(merge-with + %1 %2) {}))]
-      (doseq [[ch freq] chars]
+      (doseq [[_ freq] chars]
         (let [distribution (/ (* freq ab-len)
                               (* n    id-len))]
-          (is (close? distribution 1.0) ch)))))
+          (is (util/close? distribution 1.0))))))
