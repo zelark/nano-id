@@ -8,7 +8,7 @@
 
 (defn nano-id
   "Secure random ID generator.
-  It takes `size`, which defines ID length, by default it's 21."
+  Generates IDs of the specified `size`, it's 21 by default."
   ([] (nano-id 21))
   ([size]
    (let [mask 0x3f

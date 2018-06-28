@@ -5,7 +5,7 @@
 
 (defn generate
   "Secure random ID generator with custom alphabet.
-  Takes `alphabet` and returns a function which ID generator.
+  Takes `alphabet` and returns a function which is ID generator.
   `alphabet` must contain 256 symbols or less. Otherwise,
   the generator will not be secure."
   [alphabet]

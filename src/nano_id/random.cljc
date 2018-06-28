@@ -8,7 +8,7 @@
 
 
 (defn random-bytes
-  "Returns a random byte array of the specified size."
+  "Returns a random byte sequence of the specified size."
   [size]
   #?(:clj  (let [seed (byte-array size)]
              (.nextBytes secure-random seed)
