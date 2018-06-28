@@ -3,12 +3,13 @@
     #?(:clj  [clojure.test :refer :all]
        :cljs [cljs.test :refer-macros [deftest is testing]])
     [nano-id.util :as util]
-    [nano-id.custom :refer [nano-id]]))
+    [nano-id.custom :refer [generate]]))
 
 
 (def alphabet "abcdefghijklmnopqrstuvwxyz")
 
-(def nano-ids (repeatedly #(nano-id alphabet 5)))
+(def nano-id (generate alphabet))
+(def nano-ids (repeatedly #(nano-id 5)))
 
 
 (deftest test-custom-nano-id
