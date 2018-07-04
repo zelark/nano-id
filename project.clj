@@ -27,4 +27,4 @@
                :source-paths ["src" "test"]
                :compiler     { :main          nano-id.runner
                                :output-to     "target/unit-test.js"
-                               :optimizations :simple }}]})
+                               :optimizations :advanced }}]})

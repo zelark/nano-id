@@ -1,6 +1,5 @@
 (ns nano-id.custom
-  (:require [clojure.string :as str]
-            [nano-id.random :as random]))
+  (:require [nano-id.random :as random]))
 
 
 (defn generate
@@ -10,14 +9,18 @@
   the generator will not be secure."
   [alphabet]
   (assert (<= 2 (count alphabet) 256) "alphabet must contain from 2 to 256 characters.")
-  (let [alphabet-len (count alphabet)
-        power        (int (/ (Math/log (dec alphabet-len)) (Math/log 2)))
-        mask         (dec (bit-shift-left 2 power))]
+  (let [alphabet (vec (map str alphabet))
+        power    (int (/ (Math/log (dec (count alphabet))) (Math/log 2)))
+        mask     (dec (bit-shift-left 2 power))]
     (fn [size]
-      (let [step  (int (* 1.6 (/ mask alphabet-len) size))
-            bytes (flatten (repeatedly #(random/random-bytes step)))]
-        (reduce (fn [id byte]
-                  (if (== (count (filter some? id)) size)
-                    (reduced (str/join id))
-                    (conj id (nth alphabet (bit-and byte mask) nil))))
-                [] bytes)))))
+      (loop [step  (int (* 1.6 (/ mask (count alphabet)) size))
+             bytes (random/random-bytes step)
+             id    #?(:clj (StringBuilder.) :cljs "")]
+        (if (== (.length id) size)
+          (str id)
+          (recur step
+                 (or (next bytes) (random/random-bytes step))
+                 (if-let [ch (nth alphabet (bit-and (first bytes) mask) nil)]
+                   #?(:clj (.append id ch) :cljs (str id ch))
+                   id)))))))
+  

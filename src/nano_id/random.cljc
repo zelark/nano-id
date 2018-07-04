@@ -10,9 +10,7 @@
 (defn random-bytes
   "Returns a random byte sequence of the specified size."
   [size]
-  #?(:clj  (let [seed (byte-array size)]
-             (.nextBytes secure-random seed)
-             (seq seed))
+  #?(:clj  (.generateSeed ^SecureRandom secure-random size)
      :cljs (let [seed (js/Uint8Array. size)]
              (.getRandomValues secure-random seed)
              (array-seq seed))))

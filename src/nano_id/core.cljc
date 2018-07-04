@@ -1,9 +1,9 @@
 (ns nano-id.core
-  (:require [clojure.string :as str]
-            [nano-id.random :as random]))
+  (:require [nano-id.random :as random]))
 
 
-(def ^:const alphabet "_~0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+(def alphabet
+  (vec (map str "_~0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")))
 
 
 (defn nano-id
@@ -11,7 +11,13 @@
   Generates IDs of the specified `size`, it's 21 by default."
   ([] (nano-id 21))
   ([size]
-   (let [mask 0x3f
-         id   (for [byte (random/random-bytes size)]
-                (nth alphabet (bit-and byte mask)))]
-     (str/join id))))
+   (loop [mask  0x3f
+          bytes (random/random-bytes size)
+          id    #?(:clj (StringBuilder.) :cljs "")]
+     (if bytes
+       (recur mask
+              (next bytes)
+              (let [ch (nth alphabet (bit-and (first bytes) mask))]
+                #?(:clj (.append id ch) :cljs (str id ch))))
+       (str id)))))
+

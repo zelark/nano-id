@@ -20,7 +20,7 @@
     (let [ids (take 100000 nano-ids)]
       (is (apply distinct? ids))))
       
-  (testing "has flat distribution")
+  (testing "has flat distribution"
     (let [n      100000
           ids    (take n nano-ids)
           id-len (count (nano-id))
@@ -31,4 +31,4 @@
       (doseq [[_ freq] chars]
         (let [distribution (/ (* freq ab-len)
                               (* n    id-len))]
-          (is (util/close? distribution 1.0))))))
+          (is (util/close? distribution 1.0)))))))
