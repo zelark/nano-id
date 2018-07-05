@@ -1,5 +1,5 @@
 (ns nano-id.core
-  (:require [nano-id.random :as random]))
+  (:require [nano-id.random :as rnd]))
 
 
 (def alphabet
@@ -12,7 +12,7 @@
   ([] (nano-id 21))
   ([size]
    (loop [mask  0x3f
-          bytes (random/random-bytes size)
+          bytes (rnd/random-bytes size)
           id    #?(:clj (StringBuilder.) :cljs "")]
      (if bytes
        (recur mask
