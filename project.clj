@@ -5,11 +5,8 @@
   :license { :name "The MIT License"
              :url "https://opensource.org/licenses/MIT" }
   
-  :plugins [[lein-figwheel  "0.5.16"]
-            [lein-doo       "0.1.10"]
+  :plugins [[lein-doo       "0.1.10"]
             [lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]]
-
-  :prep-tasks ["javac" "compile"]
 
   :profiles {
     :dev {
@@ -23,8 +20,12 @@
              "cljs-test" ["do" ["doo" "browsers" "test" "once"]] }
 
   :cljsbuild {
-    :builds [{ :id           "test"
-               :source-paths ["src" "test"]
-               :compiler     { :main          nano-id.runner
-                               :output-to     "target/unit-test.js"
-                               :optimizations :advanced }}]})
+    :builds [
+      { :id "test"
+        :source-paths ["src" "test"]
+        :compiler { :main          nano-id.runner
+                    :output-to     "target/unit-test.js"
+                    :optimizations :advanced }}
+    ]
+  }
+)
