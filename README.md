@@ -48,11 +48,11 @@ user=> (my-nano-id 10)
 Or your custom random number generator, for example
 ```clojure
 (let [alphabet "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz~"
-      time-gen (fn [n] (take n (iterate #(bit-shift-right % 6)
+      time-gen (fn [n] (take n (iterate #(unsigned-bit-shift-right % 6)
                                         (quot (System/currentTimeMillis) 1000))))
       time-id  (generate alphabet time-gen)]
   (time-id 6))
-"0urFR1"
+"1RJu2O"
 
 ```
 This encodes current time using a lexicographical alphabet.

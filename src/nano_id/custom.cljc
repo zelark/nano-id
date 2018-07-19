@@ -18,12 +18,12 @@
      (fn [size]
        (loop [step  (int (* 1.6 (/ mask (count alphabet)) size))
               bytes (random step)
-              id    #?(:clj (StringBuilder.) :cljs "")]
-         (if (== (.length id) size)
-           (str id)
+              id    #?(:clj () :cljs "")]
+         (if (== (count id) size)
+           #?(:clj (clojure.string/join id) :cljs id)
            (recur step
                   (or (next bytes) (random step))
                   (if-let [ch (nth alphabet (bit-and (first bytes) mask) nil)]
-                    #?(:clj (.append id ch) :cljs (str id ch))
+                    #?(:clj (conj id ch) :cljs (str ch id))
                     id))))))))
   
