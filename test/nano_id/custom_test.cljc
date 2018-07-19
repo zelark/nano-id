@@ -10,14 +10,12 @@
   (testing "has flat distribution"
     (let [alphabet "abcdefghijklmnopqrstuvwxyz"
           nano-id  (generate alphabet)
-          nano-ids (repeatedly #(nano-id 5))
           n        100000
-          ids      (take n nano-ids)
-          id-len   (count (first ids))
+          id-len   5
           ab-len   (count alphabet)
-          chars    (->> ids
-                        (map frequencies)
-                        (reduce #(merge-with + %1 %2) {}))]
+          nano-ids (repeatedly #(nano-id id-len))
+          xf       (comp (map frequencies) (take n))
+          chars    (transduce xf (partial merge-with +) {} nano-ids)]
       (doseq [[_ freq] chars]
         (let [distribution (/ (* freq ab-len)
                               (* n    id-len))]

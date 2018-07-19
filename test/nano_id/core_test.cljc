@@ -22,12 +22,10 @@
       
   (testing "has flat distribution"
     (let [n      100000
-          ids    (take n nano-ids)
           id-len (count (nano-id))
           ab-len (count alphabet)
-          chars  (->> ids 
-                      (map frequencies)
-                      (reduce #(merge-with + %1 %2) {}))]
+          xf     (comp (map frequencies) (take n))
+          chars  (transduce xf (partial merge-with +) {} nano-ids)]
       (doseq [[_ freq] chars]
         (let [distribution (/ (* freq ab-len)
                               (* n    id-len))]
