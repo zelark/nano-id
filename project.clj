@@ -1,6 +1,6 @@
 (defproject nano-id "0.9.3"
   :description "A tiny, secure, URL-friendly unique string ID generator"
-  :url "https://zelark.github.com/nano-id"
+  :url "https://github.com/zelark/nano-id"
 
   :license { :name "The MIT License"
              :url "https://opensource.org/licenses/MIT" }
