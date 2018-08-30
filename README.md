@@ -57,6 +57,9 @@ Or your custom random number generator, for example
 ```
 This encodes current time using a lexicographical alphabet.
 
+## Tools
+- [Nano ID Collision Calculator](https://zelark.github.io/nano-id-cc/)
+
 ## Copyright and license
 Code copyright 2018 [nano-id authors](https://github.com/zelark/nano-id/graphs/contributors) and [Andrey Sitnik](https://github.com/ai). Code released under the [MIT License](https://github.com/zelark/nano-id/blob/master/LICENSE).
 
