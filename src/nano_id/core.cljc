@@ -11,13 +11,6 @@
   Generates IDs of the specified `size`, it's 21 by default."
   ([] (nano-id 21))
   ([size]
-   (loop [mask  0x3f
-          bytes (rnd/random-bytes size)
-          id    #?(:clj (StringBuilder.) :cljs "")]
-     (if bytes
-       (recur mask
-              (next bytes)
-              (let [ch (nth alphabet (bit-and (first bytes) mask))]
-                #?(:clj (.append id ch) :cljs (str id ch))))
-       (str id)))))
-
+   (->> (rnd/random-bytes size)
+        (map #(nth alphabet (bit-and % 0x3f)))
+        (apply str))))
