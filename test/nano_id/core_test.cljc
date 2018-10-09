@@ -10,7 +10,7 @@
 
 
 (deftest basic-functionality
-  (testing "generagets URL-friendly IDs"
+  (testing "generates URL-friendly IDs"
     (let [ids (take 10 nano-ids)]
       (doseq [id ids]
         (is (== (count id) 21) "test default length")
