@@ -32,7 +32,7 @@ user=> (nano-id 10)
 "N2g6IlJP0l"
 ```
 
-### Custom alphabet or random nubmer generator
+### Custom alphabet or random number generator
 Also you can provide your own alphabet as follow
 ```clojure
 user=> (require '[nano-id.custom :refer [generate]])
