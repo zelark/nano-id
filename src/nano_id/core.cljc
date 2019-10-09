@@ -3,7 +3,7 @@
 
 
 (def alphabet
-  (vec (map str "_~0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")))
+  (vec (map str "_-0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")))
 
 
 (defn nano-id
