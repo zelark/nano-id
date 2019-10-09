@@ -25,4 +25,4 @@
     (let [alphabet "-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz"
           prng     (fn [n] (take n (iterate #(unsigned-bit-shift-right % 6) 2377900801)))
           gen-id   (generate alphabet prng)]
-      (is (= (gen-id 6) "2DjzC1")))))
+      (is (= (gen-id 6) "1CiyB0")))))
