@@ -1,10 +1,10 @@
-(defproject nano-id "0.9.3"
+(defproject nano-id "0.10.0"
   :description "A tiny, secure, URL-friendly unique string ID generator"
   :url "https://github.com/zelark/nano-id"
 
   :license { :name "The MIT License"
              :url "https://opensource.org/licenses/MIT" }
-  
+
   :plugins [[lein-doo       "0.1.10"]
             [lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]]
 

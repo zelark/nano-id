@@ -8,6 +8,5 @@ pom.xml.asc
 /.lein-*
 /.nrepl-port
 *.iml
-out/
-node_modules/
-resources/
+/out
+/node_modules
