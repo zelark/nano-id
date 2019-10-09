@@ -48,7 +48,7 @@ user=> (my-nano-id 10)
 
 Or your custom random number generator, for example
 ```clojure
-(let [alphabet "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz-"
+(let [alphabet "-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz"
       time-gen (fn [n] (take n (iterate #(unsigned-bit-shift-right % 6)
                                         (quot (System/currentTimeMillis) 1000))))
       time-id  (generate alphabet time-gen)]
