@@ -22,7 +22,7 @@
           (is (util/close? distribution 1.0))))))
 
   (testing "custom random"
-    (let [alphabet "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz~"
+    (let [alphabet "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz-"
           prng     (fn [n] (take n (iterate #(unsigned-bit-shift-right % 6) 2377900801)))
           gen-id   (generate alphabet prng)]
       (is (= (gen-id 6) "2DjzC1")))))

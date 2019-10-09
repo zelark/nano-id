@@ -12,7 +12,7 @@ nano-id uses [SecureRandom](https://docs.oracle.com/javase/7/docs/api/java/secur
 nano-id generates compact IDs with just 21 characters. By using a larger alphabet than UUID, nano-id can generate a greater number of unique IDs, when compared to UUID, with fewer characters (21 versus 36).
 
 ### URL-Friendly
-nano-id uses URL-friendly characters `[A-Za-z0-9_~]`. Perfect for unique identifiers in web applications.
+nano-id uses URL-friendly characters `[A-Za-z0-9_-]`. Perfect for unique identifiers in web applications.
 
 ## Usage
 ### Normal
@@ -48,7 +48,7 @@ user=> (my-nano-id 10)
 
 Or your custom random number generator, for example
 ```clojure
-(let [alphabet "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz~"
+(let [alphabet "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz-"
       time-gen (fn [n] (take n (iterate #(unsigned-bit-shift-right % 6)
                                         (quot (System/currentTimeMillis) 1000))))
       time-id  (generate alphabet time-gen)]

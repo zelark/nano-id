@@ -2,7 +2,7 @@
 
 
 (defn ^boolean valid-id? [id]
-  (re-matches #"^[A-Za-z0-9_~]+$" id))
+  (re-matches #"^[A-Za-z0-9_-]+$" id))
 
 
 (defn ^boolean close? [^double x ^double y]
