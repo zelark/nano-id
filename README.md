@@ -16,7 +16,7 @@ nano-id uses URL-friendly characters `[A-Za-z0-9_-]`. Perfect for unique identif
 
 ## Usage
 ### Normal
-Add to your project.clj: `[nano-id "0.9.3"]`.
+Add to your project.clj: `[nano-id "0.10.0"]`.
 
 The default implementation uses 64-character alphabet and generates 21-character IDs.
 ```clojure
