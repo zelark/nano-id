@@ -8,16 +8,22 @@
   :plugins [[lein-doo       "0.1.10"]
             [lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]]
 
-  :profiles {
-    :dev {
-      :dependencies [[org.clojure/clojure       "1.9.0"]
-                     [org.clojure/clojurescript "1.10.238"]] }}
+  :profiles {:dev {:dependencies [[org.clojure/clojure       "1.10.1"]
+                                  [org.clojure/clojurescript "1.10.238"]
+                                  ;; perf test
+                                  [criterium "0.4.5"]
+                                  [com.aventrix.jnanoid/jnanoid "2.0.0"]]}
+             :perf {:jvm-opts ^:replace ["-server"
+                                         "-Xms4096m"
+                                         "-Xmx4096m"
+                                         "-Dclojure.compiler.direct-linking=true"]}}
 
   :doo { :alias { :browsers [:chrome :firefox] }}
 
   :aliases { "deploy"    ["do" "clean," "deploy" "clojars"]
              "test"      ["do" ["clean"] ["test"]]
-             "cljs-test" ["do" ["doo" "browsers" "test" "once"]] }
+             "cljs-test" ["do" ["doo" "browsers" "test" "once"]]
+             "bench"     ["with-profile" "default,dev,perf" "run" "-m" "nano-id.benchmark"]}
 
   :cljsbuild {
     :builds [
