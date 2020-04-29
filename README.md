@@ -1,18 +1,19 @@
 # nano-id
-A tiny, secure, URL-friendly unique string ID generator for both Clojure and ClojureScript.
+A tiny, secure, URL-friendly unique string ID generator for Clojure and ClojureScript.
+
+- **Secure**. It uses cryptographically strong random APIs.
+- **Fast**. It's 20% faster than jnanoid (the java implementation).
+- **Compact**. It uses a larger alphabet than UUID (A-Za-z0-9_-). So ID size was reduced from 36 to 21 symbols.
+- **URL-Firendly**. It uses only URL-friendly characters. Perfect for unique identifiers in web applications.
+
+```clojure
+(require '[nano-id.core :refer [nano-id]])
+(nano-id) ;; => "trxwfoC8mqB3Q8Wrdq4OQ"
+```
 
 [![Clojars Project](https://img.shields.io/clojars/v/nano-id.svg)](https://clojars.org/nano-id)
 [![cljdoc badge](https://cljdoc.org/badge/nano-id/nano-id)](https://cljdoc.org/d/nano-id/nano-id/CURRENT)
 [![CircleCI](https://circleci.com/gh/zelark/nano-id/tree/master.svg?style=svg)](https://circleci.com/gh/zelark/nano-id/tree/master)
-
-### Secure
-nano-id uses [SecureRandom](https://docs.oracle.com/javase/7/docs/api/java/security/SecureRandom.html) (Clojure) and [crypto](https://developer.mozilla.org/en-US/docs/Web/API/Window/crypto) (ClojureScript) to generate cryptographically strong random IDs with a proper distribution of characters.
-
-### Compact
-nano-id generates compact IDs with just 21 characters. By using a larger alphabet than UUID, nano-id can generate a greater number of unique IDs, when compared to UUID, with fewer characters (21 versus 36).
-
-### URL-Friendly
-nano-id uses URL-friendly characters `[A-Za-z0-9_-]`. Perfect for unique identifiers in web applications.
 
 ## Benchmark
 ```
@@ -68,11 +69,12 @@ user=> (nano-id)
 "NOBHihn110UuXbF2JiKxT"
 ```
 
-But you can pass the size
+If you want to reduce the ID size (and increase collision probability), you can pass the size as an argument.
 ```clojure
 user=> (nano-id 10)
 "N2g6IlJP0l"
 ```
+Don’t forget to check the safety of your ID size via [collision probability calculator](https://zelark.github.io/nano-id-cc/).
 
 ### Custom alphabet or random number generator
 Also you can provide your own alphabet as follow
@@ -87,22 +89,27 @@ user=> (my-nano-id 10)
 "abcbabacba"
 ```
 
-Or your custom random number generator, for example
+Also you can provide your custom random number generator, for example
 ```clojure
 (let [alphabet "-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz"
-      time-gen (fn [n] (take n (iterate #(unsigned-bit-shift-right % 6)
-                                        (quot (System/currentTimeMillis) 1000))))
+      time-gen (fn [n]
+                 (take n (iterate #(unsigned-bit-shift-right % 6)
+                                  (quot (System/currentTimeMillis) 1000))))
       time-id  (generate alphabet time-gen)]
   (time-id 6))
 "1RJu2O"
-
 ```
 This encodes current time using a lexicographical alphabet.
 
 ## Tools
 - [Nano ID Collision Calculator](https://zelark.github.io/nano-id-cc/)
 
-## Copyright and license
-Code copyright 2018 [nano-id authors](https://github.com/zelark/nano-id/graphs/contributors) and [Andrey Sitnik](https://github.com/ai). Code released under the [MIT License](https://github.com/zelark/nano-id/blob/master/LICENSE).
+## Other implementations
+You can find implementations in other programming languages [here](https://github.com/ai/nanoid#other-programming-languages).
 
-Based on the original [nanoid](https://github.com/ai/nanoid) for JavaScript by [Andrey Sitnik](https://github.com/ai/).
+## License
+Copyright © 2018-2020 Aleksandr Zhuravlev.
+
+Code released under the [MIT License](https://github.com/zelark/nano-id/blob/master/LICENSE).
+
+Based on the original [Nano ID](https://github.com/ai/nanoid) by [Andrey Sitnik](https://github.com/ai/).
