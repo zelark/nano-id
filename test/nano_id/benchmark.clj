@@ -28,12 +28,14 @@
 (defn run-perf-test []
   (bench!
    "UUID"
-   (UUID/randomUUID))
+   (str (UUID/randomUUID))) ; randomUUID returns just an instance,
+                            ; so we need to turn it into a string
+                            ; to get more accurate result.
   (bench!
-   "nano-id (clojure)"
+   "nano-id"
    (nano-id/nano-id))
   (bench!
-   "jnanoid (java)"
+   "jnanoid"
    (NanoIdUtils/randomNanoId)))
 
 (defn -main [& _]

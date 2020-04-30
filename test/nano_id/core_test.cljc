@@ -1,6 +1,6 @@
 (ns nano-id.core-test
   (:require
-    #?(:clj  [clojure.test :refer :all]
+    #?(:clj  [clojure.test :refer [deftest is testing]]
        :cljs [cljs.test :refer-macros [deftest is testing]])
     [nano-id.core :refer [nano-id alphabet]]
     [nano-id.util :as util]))
@@ -19,7 +19,7 @@
   (testing "has no collisions"
     (let [ids (take 100000 nano-ids)]
       (is (apply distinct? ids))))
-      
+
   (testing "has flat distribution"
     (let [n      100000
           id-len (count (nano-id))
