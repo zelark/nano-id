@@ -2,7 +2,7 @@
 A tiny, secure, URL-friendly unique string ID generator for Clojure and ClojureScript.
 
 - **Secure**. It uses cryptographically strong random APIs.
-- **Fast**. It's 20% faster than jnanoid (the java implementation).
+- **Fast**. It's ~35% faster than [jnanoid](https://github.com/aventrix/jnanoid), and almost as fast as UUID.
 - **Compact**. It uses a larger alphabet than UUID (A-Za-z0-9_-). So ID size was reduced from 36 to 21 symbols.
 - **URL-Firendly**. It uses only URL-friendly characters. Perfect for unique identifiers in web applications.
 
@@ -20,36 +20,36 @@ A tiny, secure, URL-friendly unique string ID generator for Clojure and ClojureS
 $ lein bench
 ##### UUID #####
 
- 1.23µs 
+ 1.60µs 
 
-Evaluation count : 501570 in 6 samples of 83595 calls.
-             Execution time mean : 1.227453 µs
-    Execution time std-deviation : 39.436371 ns
-   Execution time lower quantile : 1.187412 µs ( 2.5%)
-   Execution time upper quantile : 1.285405 µs (97.5%)
-                   Overhead used : 2.337542 ns
+Evaluation count : 379296 in 6 samples of 63216 calls.
+             Execution time mean : 1.597453 µs
+    Execution time std-deviation : 7.981484 ns
+   Execution time lower quantile : 1.586471 µs ( 2.5%)
+   Execution time upper quantile : 1.605730 µs (97.5%)
+                   Overhead used : 2.336439 ns
 
-##### nano-id (clojure) #####
+##### nano-id #####
 
- 2.22µs 
+ 1.72µs 
 
-Evaluation count : 276894 in 6 samples of 46149 calls.
-             Execution time mean : 2.220927 µs
-    Execution time std-deviation : 13.947733 ns
-   Execution time lower quantile : 2.204769 µs ( 2.5%)
-   Execution time upper quantile : 2.236207 µs (97.5%)
-                   Overhead used : 2.337542 ns
+Evaluation count : 357846 in 6 samples of 59641 calls.
+             Execution time mean : 1.722310 µs
+    Execution time std-deviation : 65.704837 ns
+   Execution time lower quantile : 1.677106 µs ( 2.5%)
+   Execution time upper quantile : 1.799135 µs (97.5%)
+                   Overhead used : 2.336439 ns
 
-##### jnanoid (java) #####
+##### jnanoid #####
 
- 2.67µs 
+ 2.61µs 
 
-Evaluation count : 229920 in 6 samples of 38320 calls.
-             Execution time mean : 2.666806 µs
-    Execution time std-deviation : 19.558573 ns
-   Execution time lower quantile : 2.646141 µs ( 2.5%)
-   Execution time upper quantile : 2.689172 µs (97.5%)
-                   Overhead used : 2.337542 ns
+Evaluation count : 235944 in 6 samples of 39324 calls.
+             Execution time mean : 2.614275 µs
+    Execution time std-deviation : 39.679415 ns
+   Execution time lower quantile : 2.576874 µs ( 2.5%)
+   Execution time upper quantile : 2.667085 µs (97.5%)
+                   Overhead used : 2.336439 ns
 ```
 Configuration:
 - MacBook Air (mid 2013), 1.3 GHz Intel Core i5, 8GB RAM;
@@ -58,7 +58,7 @@ Configuration:
 
 ## Usage
 ### Normal
-Add to your project.clj: `[nano-id "0.11.0"]`.
+Add to your project.clj: `[nano-id "1.0.0"]`.
 
 The default implementation uses 64-character alphabet and generates 21-character IDs.
 ```clojure
