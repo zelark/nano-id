@@ -57,9 +57,13 @@ Configuration:
 - Clojure 1.10.1.
 
 ## Usage
-### Normal
-Add to your project.clj: `[nano-id "1.0.0"]`.
+### Leiningen or Boot
+`[nano-id "1.0.0"]`
 
+### Clojure CLI
+`nano-id {:mvn/version "1.0.0"}`
+
+### Default ID generator
 The default implementation uses 64-character alphabet and generates 21-character IDs.
 ```clojure
 user=> (require '[nano-id.core :refer [nano-id]])
@@ -76,28 +80,30 @@ user=> (nano-id 10)
 ```
 Don’t forget to check the safety of your ID size via [collision probability calculator](https://zelark.github.io/nano-id-cc/).
 
-### Custom alphabet or random number generator
-Also you can provide your own alphabet as follow
+### Custom ID generator
+If for whatever reason the default implementation doesn't fit your project, you can build your own ID generator just passing your alphabet and ID size in `custom` function. It will give you back a new generator:
 ```clojure
-user=> (require '[nano-id.custom :refer [generate]])
+user=> (require '[nano-id.core :refer [custom]])
 nil
 
-user=> (def my-nano-id (generate "abc"))
+user=> (def my-nano-id (custom ".-" 6))
 #'user/my-nano-id
 
-user=> (my-nano-id 10)
-"abcbabacba"
+user=> (my-nano-id)
+"-.---."
 ```
 
-Also you can provide your custom random number generator, for example
+Also you can provide your random bytes generator. In the example below we use this feature to encode the current time:
 ```clojure
 (let [alphabet "-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz"
       time-gen (fn [n]
-                 (take n (iterate #(unsigned-bit-shift-right % 6)
-                                  (quot (System/currentTimeMillis) 1000))))
-      time-id  (generate alphabet time-gen)]
-  (time-id 6))
-"1RJu2O"
+                 (->> (quot (System/currentTimeMillis) 1000)
+                      (iterate #(unsigned-bit-shift-right % 6))
+                      (take n)
+                      reverse))
+      time-id  (custom alphabet 6 time-gen)]
+  (time-id))
+"0TfMui"
 ```
 This encodes current time using a lexicographical alphabet.
 
