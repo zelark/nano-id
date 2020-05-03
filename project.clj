@@ -5,16 +5,16 @@
   :license { :name "The MIT License"
              :url "https://opensource.org/licenses/MIT" }
 
+  :dependencies [[org.clojure/clojure       "1.10.1"   :scope "provided"]
+                 [org.clojure/clojurescript "1.10.597" :scope "provided"]]
+
   :plugins [[lein-doo       "0.1.10"]
             [lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]]
 
   :javac-options ["-Xlint:unchecked" "-target" "1.8" "-source" "1.8"]
   :java-source-paths ["src"]
 
-  :profiles {:dev {:dependencies [[org.clojure/clojure       "1.10.1"]
-                                  [org.clojure/clojurescript "1.10.238"]
-                                  ;; perf test
-                                  [criterium "0.4.5"]
+  :profiles {:dev {:dependencies [[criterium "0.4.5"]
                                   [com.aventrix.jnanoid/jnanoid "2.0.0"]]}
              :perf {:jvm-opts ^:replace ["-server"
                                          "-Xms4096m"
