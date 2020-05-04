@@ -18,38 +18,14 @@ A tiny, secure, URL-friendly unique string ID generator for Clojure and ClojureS
 ## Benchmark
 ```
 $ lein bench
-##### UUID #####
 
- 1.60µs 
+## Actually, you will get more detailed info, this is summary.
 
-Evaluation count : 379296 in 6 samples of 63216 calls.
-             Execution time mean : 1.597453 µs
-    Execution time std-deviation : 7.981484 ns
-   Execution time lower quantile : 1.586471 µs ( 2.5%)
-   Execution time upper quantile : 1.605730 µs (97.5%)
-                   Overhead used : 2.336439 ns
-
-##### nano-id #####
-
- 1.72µs 
-
-Evaluation count : 357846 in 6 samples of 59641 calls.
-             Execution time mean : 1.722310 µs
-    Execution time std-deviation : 65.704837 ns
-   Execution time lower quantile : 1.677106 µs ( 2.5%)
-   Execution time upper quantile : 1.799135 µs (97.5%)
-                   Overhead used : 2.336439 ns
-
-##### jnanoid #####
-
- 2.61µs 
-
-Evaluation count : 235944 in 6 samples of 39324 calls.
-             Execution time mean : 2.614275 µs
-    Execution time std-deviation : 39.679415 ns
-   Execution time lower quantile : 2.576874 µs ( 2.5%)
-   Execution time upper quantile : 2.667085 µs (97.5%)
-                   Overhead used : 2.336439 ns
+UUID               1.60µs
+nano-id            1.69µs
+jnanoid            2.77µs
+nano-id (custom)   2.25µs
+jnanoid (custom)   2.57µs
 ```
 Configuration:
 - MacBook Air (mid 2013), 1.3 GHz Intel Core i5, 8GB RAM;
