@@ -68,7 +68,9 @@
 
 
 (deftest test-exceptions
-  (testing "size must be positive"
+  (testing "size must be positive (nano-id)"
+    (is (thrown? #?(:clj AssertionError :cljs js/Error) (nano-id -2))))
+  (testing "size must be positive (custom)"
     (is (thrown? #?(:clj AssertionError :cljs js/Error) (custom "abc" -2))))
   (testing "low boundary of alphabet"
     (is (thrown? #?(:clj AssertionError :cljs js/Error) (custom "a" 10))))

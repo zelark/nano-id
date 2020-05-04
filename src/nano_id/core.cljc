@@ -14,6 +14,7 @@
    #?(:clj  (NanoID/nanoID)
       :cljs (nano-id 21)))
   ([size]
+   (assert (pos? size) "size must be positive.")
    #?(:clj  (NanoID/nanoID size)
       :cljs (let [mask 0x3f]
               (loop [bytes (rnd/random-bytes size)
