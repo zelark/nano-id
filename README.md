@@ -100,7 +100,8 @@ Also you can provide your random bytes generator. In the example below we use th
                  (->> (quot (System/currentTimeMillis) 1000)
                       (iterate #(unsigned-bit-shift-right % 6))
                       (take n)
-                      reverse))
+                      reverse
+                      byte-array))
       time-id  (custom alphabet 6 time-gen)]
   (time-id))
 "0TfMui"

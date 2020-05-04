@@ -4,8 +4,6 @@
   (:import com.aventrix.jnanoid.jnanoid.NanoIdUtils)
   (:import java.util.UUID))
 
-(set! *warn-on-reflection* true)
-
 (def magenta "\u001B[35m")
 (def green   "\u001B[32m")
 (def reset   "\u001B[0m")
@@ -26,17 +24,28 @@
      (println)))
 
 (defn run-perf-test []
-  (bench!
-   "UUID"
-   (str (UUID/randomUUID))) ; randomUUID returns just an instance,
-                            ; so we need to turn it into a string
-                            ; to get more accurate result.
-  (bench!
-   "nano-id"
-   (nano-id/nano-id))
-  (bench!
-   "jnanoid"
-   (NanoIdUtils/randomNanoId)))
+  (let [size          10
+        alphabet      "1234567890abcdefg"
+        custom-title  (str " (custom - alphabet: " (count alphabet) ", size: " size ")")
+        nano-custom   (nano-id/custom alphabet size)
+        j-alphabet    (.toCharArray alphabet)]
+    (bench!
+     "UUID"
+     (str (UUID/randomUUID))) ; randomUUID returns just an instance,
+                              ; so we need to turn it into a string
+                              ; to get more accurate result.
+    (bench!
+     "nano-id"
+     (nano-id/nano-id))
+    (bench!
+     "jnanoid"
+     (NanoIdUtils/randomNanoId))
+    (bench!
+     (str "nano-id" custom-title)
+     (nano-custom))
+    (bench!
+     (str "jnanoid" custom-title)
+     (NanoIdUtils/randomNanoId NanoIdUtils/DEFAULT_NUMBER_GENERATOR j-alphabet size))))
 
 (defn -main [& _]
   (run-perf-test))

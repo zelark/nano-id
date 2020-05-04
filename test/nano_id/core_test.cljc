@@ -60,17 +60,17 @@
                      (->> 2377900801
                           (iterate #(unsigned-bit-shift-right % 6))
                           (take n)
-                          reverse))
+                          reverse
+                          #?(:clj byte-array)))
           gen-id   (custom alphabet 6 prng)]
       (is (= (gen-id) "1CiyB0")))))
 
 
+
 (deftest test-exceptions
   (testing "size must be positive"
-    (is (thrown? AssertionError (custom "abc" -2))))
-
+    (is (thrown? #?(:clj AssertionError :cljs js/Error) (custom "abc" -2))))
   (testing "low boundary of alphabet"
-    (is (thrown? AssertionError (custom "a" 10))))
-
+    (is (thrown? #?(:clj AssertionError :cljs js/Error) (custom "a" 10))))
   (testing "high boundary of alphabet"
-    (is (thrown? AssertionError (custom (repeat 257 "a") 10)))))
+    (is (thrown? #?(:clj AssertionError :cljs js/Error) (custom (repeat 257 "a") 10)))))
