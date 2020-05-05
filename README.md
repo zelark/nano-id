@@ -34,14 +34,14 @@ Configuration:
 - Java(TM) SE Runtime Environment (build 1.8.0_251-b08);
 - Clojure 1.10.1.
 
-## Usage
+## Installation
 ### Leiningen or Boot
 `[nano-id "1.0.0"]`
 
 ### Clojure CLI
 `nano-id {:mvn/version "1.0.0"}`
 
-### Default ID generator
+## Usage
 The default implementation uses 64-character alphabet and generates 21-character IDs.
 ```clojure
 user=> (require '[nano-id.core :refer [nano-id]])
