@@ -2,7 +2,7 @@
 A tiny, secure, URL-friendly unique string ID generator for Clojure and ClojureScript.
 
 - **Secure**. It uses cryptographically strong random APIs.
-- **Fast**. It's ~35% faster than [jnanoid](https://github.com/aventrix/jnanoid), and almost as fast as UUID.
+- **Fast**. It's ~39% faster than [jnanoid](https://github.com/aventrix/jnanoid), and almost as fast as UUID.
 - **Compact**. It uses a larger alphabet than UUID (A-Za-z0-9_-). So ID size was reduced from 36 to 21 symbols.
 - **URL-Firendly**. It uses only URL-friendly characters. Perfect for unique identifiers in web applications.
 
