@@ -58,6 +58,16 @@ user=> (nano-id 10)
 ```
 Don’t forget to check the safety of your ID size via [collision probability calculator](https://zelark.github.io/nano-id-cc/).
 
+### IE
+For IE support, you need to add crypto alias:
+```clojure
+(ns your-app.core
+  (:require [nano-id.core :refer [nano-id]]))
+
+(when-not (exists? js/crypto)
+  (set! js/crypto js/msCrypto))
+```
+
 ### Custom ID generator
 If for whatever reason the default implementation doesn't fit your project, you can build your own ID generator just passing your alphabet and ID size in `custom` function. It will give you back a new generator:
 ```clojure
