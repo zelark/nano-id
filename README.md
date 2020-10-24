@@ -73,6 +73,22 @@ For IE support, you need to add crypto alias:
             [nano-id.core :refer [nano-id]]))
 ```
 
+### Node.js
+If your target is node, use `@peculiar/webcrypto` polyfill:
+
+```clojure
+(ns your-app.polyfills
+  (:require ["@peculiar/webcrypto" :refer [Crypto]]))
+
+(set! js/crypto (Crypto.))
+```
+
+```clojure
+(ns your-app.core
+  (:require [your-app.polyfills]
+            [nano-id.core :refer [nano-id]]))
+```
+
 ### Custom ID generator
 If for whatever reason the default implementation doesn't fit your project, you can build your own ID generator just passing your alphabet and ID size in `custom` function. It will give you back a new generator:
 ```clojure
