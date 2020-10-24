@@ -61,11 +61,16 @@ Don’t forget to check the safety of your ID size via [collision probability ca
 ### IE
 For IE support, you need to add crypto alias:
 ```clojure
-(ns your-app.core
-  (:require [nano-id.core :refer [nano-id]]))
+(ns your-app.polyfills)
 
 (when-not (exists? js/crypto)
   (set! js/crypto js/msCrypto))
+```
+
+```clojure
+(ns your-app.core
+  (:require [your-app.polyfills]
+            [nano-id.core :refer [nano-id]]))
 ```
 
 ### Custom ID generator
