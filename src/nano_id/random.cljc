@@ -5,15 +5,14 @@
 #?(:clj (set! *warn-on-reflection* true))
 
 (def ^:private secure-random
-  #?(:clj  NanoID/secureRandom
+  #?(:clj  (delay NanoID/secureRandom)
      :cljs js/crypto))
-
 
 (defn random-bytes
   "Returns a random byte sequence of the specified size."
   [size]
   #?(:clj  (let [seed (byte-array size)]
-             (.nextBytes ^Random secure-random seed)
+             (.nextBytes ^Random @secure-random seed)
              seed)
      :cljs (let [seed (js/Uint8Array. size)]
              (.getRandomValues secure-random seed)
