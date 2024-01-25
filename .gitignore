@@ -10,3 +10,4 @@ pom.xml.asc
 *.iml
 /out
 /node_modules
+bun.lockb
