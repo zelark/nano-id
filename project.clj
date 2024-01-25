@@ -21,7 +21,7 @@
                                          "-Xmx4096m"
                                          "-Dclojure.compiler.direct-linking=true"]}}
 
-  :doo { :alias { :browsers [:chrome :firefox] }}
+  :doo { :alias { :browsers [:chrome #_:firefox] }}
 
   :aliases { "deploy"    ["do" "clean," "deploy" "clojars"]
              "test"      ["do" ["clean"] ["test"]]
