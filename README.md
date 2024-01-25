@@ -15,7 +15,7 @@ clj -Sdeps '{:deps {nano-id/nano-id {:mvn/version "1.1.0"}}}'
 
 [![Clojars Project](https://img.shields.io/clojars/v/nano-id.svg)](https://clojars.org/nano-id)
 [![cljdoc badge](https://cljdoc.org/badge/nano-id/nano-id)](https://cljdoc.org/d/nano-id/nano-id/CURRENT)
-![Build Status](https://github.com/zelark/nano-id/actions/workflows/tests/badge.svg?branch=master)
+[![clojure tests](https://github.com/zelark/nano-id/actions/workflows/tests.yaml/badge.svg?branch=master)](https://github.com/zelark/nano-id/actions/workflows/tests.yaml)
 
 ## Benchmark
 
