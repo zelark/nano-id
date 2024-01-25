@@ -1,8 +1,8 @@
 # nano-id
+
 A tiny, secure, URL-friendly unique string ID generator for Clojure and ClojureScript.
 
 - **Secure**. It uses cryptographically strong random APIs.
-- **Fast**. It's ~39% faster than [jnanoid](https://github.com/aventrix/jnanoid), and almost as fast as UUID.
 - **Compact**. It uses a larger alphabet than UUID (A-Za-z0-9_-). So ID size was reduced from 36 to 21 symbols.
 - **URL-Firendly**. It uses only URL-friendly characters. Perfect for unique identifiers in web applications.
 
@@ -18,21 +18,24 @@ clj -Sdeps '{:deps {nano-id {:mvn/version "1.0.0"}}}'
 [![CircleCI](https://circleci.com/gh/zelark/nano-id/tree/master.svg?style=svg)](https://circleci.com/gh/zelark/nano-id/tree/master)
 
 ## Benchmark
-```
+
+```bash
 $ lein bench
 
-## Actually, you will get more detailed info, this is summary.
+## Actually, you will get more detailed info, this is summary of 3 runs.
 
-UUID               1.60µs
-nano-id            1.69µs
-jnanoid            2.77µs
-nano-id (custom)   2.25µs
-jnanoid (custom)   2.57µs
+UUID               0.29µs 0.29µs 0.30µs
+nano-id            0.43µs 0.44µs 0.43µs
+jnanoid            0.64µs 0.66µs 0.65µs
+nano-id (custom)   0.62µs 0.62µs 0.62µs
+jnanoid (custom)   0.65µs 0.65µs 0.68µs
 ```
+
 Configuration:
-- MacBook Air (mid 2013), 1.3 GHz Intel Core i5, 8GB RAM;
-- Java(TM) SE Runtime Environment (build 1.8.0_251-b08);
-- Clojure 1.10.1.
+
+- MacBook Pro (16-inch, 2019), 2,3 GHz 8-Core Intel Core i9, 32 GB 2667 MHz DDR4;
+- OpenJDK Runtime Environment Temurin-11.0.22+7 (build 11.0.22+7);
+- Clojure 1.11.1.
 
 ## Installation
 
