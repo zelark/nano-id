@@ -41,11 +41,15 @@ Configuration:
 
 ### Clojure CLI
 
-`nano-id/nano-id {:mvn/version "1.1.0"}`
+```text
+nano-id/nano-id {:mvn/version "1.1.0"}
+```
 
 ### Leiningen or Boot
 
-`[nano-id "1.1.0"]`
+```text
+[nano-id "1.1.0"]
+```
 
 ## Usage
 
