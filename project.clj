@@ -1,4 +1,4 @@
-(defproject nano-id "1.0.0"
+(defproject nano-id "1.1.0"
   :description "A tiny, secure, URL-friendly unique string ID generator"
   :url "https://github.com/zelark/nano-id"
 

@@ -7,7 +7,7 @@ A tiny, secure, URL-friendly unique string ID generator for Clojure and ClojureS
 - **URL-Firendly**. It uses only URL-friendly characters. Perfect for unique identifiers in web applications.
 
 ```clojure
-clj -Sdeps '{:deps {nano-id {:mvn/version "1.0.0"}}}'
+clj -Sdeps '{:deps {nano-id {:mvn/version "1.1.0"}}}'
 
 (require '[nano-id.core :refer [nano-id]])
 (nano-id) ;; => "trxwfoC8mqB3Q8Wrdq4OQ"
@@ -41,11 +41,11 @@ Configuration:
 
 ### Clojure CLI
 
-`nano-id {:mvn/version "1.0.0"}`
+`nano-id {:mvn/version "1.1.0"}`
 
 ### Leiningen or Boot
 
-`[nano-id "1.0.0"]`
+`[nano-id "1.1.0"]`
 
 ## Usage
 The default implementation uses 64-character alphabet and generates 21-character IDs.
