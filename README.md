@@ -35,11 +35,14 @@ Configuration:
 - Clojure 1.10.1.
 
 ## Installation
-### Leiningen or Boot
-`[nano-id "1.0.0"]`
 
 ### Clojure CLI
+
 `nano-id {:mvn/version "1.0.0"}`
+
+### Leiningen or Boot
+
+`[nano-id "1.0.0"]`
 
 ## Usage
 The default implementation uses 64-character alphabet and generates 21-character IDs.
