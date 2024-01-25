@@ -1,0 +1,28 @@
+name: clojure tests
+
+on:
+  push:
+    branches:
+      - '*'
+    paths:
+      - '.github/workflows/**'
+      - 'src/**'
+      - 'test/**'
+      - 'project.clj'
+      - 'deps.edn'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Choose Java 11
+        run: |
+          echo "JAVA_HOME=$JAVA_HOME_11_X64" >> $GITHUB_ENV
+          echo "$JAVA_HOME_11_X64/bin" >> $GITHUB_PATH
+      - name: Java version
+        run: java -version
+      - name: Install dependencies
+        run: lein deps
+      - name: Run tests
+        run: lein test
