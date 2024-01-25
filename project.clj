@@ -11,7 +11,7 @@
   :plugins [[lein-doo       "0.1.10"]
             [lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]]
 
-  :javac-options ["-Xlint:unchecked" "-target" "1.8" "-source" "1.8"]
+  :javac-options ["-Xlint:unchecked" "-target" "11" "-source" "11"]
   :java-source-paths ["src"]
 
   :profiles {:dev {:dependencies [[criterium "0.4.5"]

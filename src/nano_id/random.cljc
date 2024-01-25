@@ -1,20 +1,14 @@
 (ns nano-id.random
-  #?(:clj (:import nano_id.NanoID))
-  #?(:clj (:import java.util.Random)))
+  #?(:clj (:import java.security.SecureRandom)))
 
-#?(:clj (set! *warn-on-reflection* true))
-
-(def ^:private secure-random
-  #?(:clj  NanoID/secureRandom
-     :cljs js/crypto))
-
+#?(:clj (defonce *secure-random (delay (SecureRandom.))))
 
 (defn random-bytes
   "Returns a random byte sequence of the specified size."
   [size]
   #?(:clj  (let [seed (byte-array size)]
-             (.nextBytes ^Random secure-random seed)
+             (.nextBytes ^SecureRandom @*secure-random seed)
              seed)
      :cljs (let [seed (js/Uint8Array. size)]
-             (.getRandomValues secure-random seed)
+             (.getRandomValues js/crypto seed)
              (array-seq seed))))

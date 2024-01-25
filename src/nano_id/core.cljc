@@ -11,11 +11,11 @@
   "Secure random ID generator.
   Generates IDs of the specified size, 21 by default."
   ([]
-   #?(:clj  (NanoID/nanoID)
+   #?(:clj  (NanoID/nanoID @rnd/*secure-random)
       :cljs (nano-id 21)))
   ([size]
    (assert (pos? size) "size must be positive.")
-   #?(:clj  (NanoID/nanoID size)
+   #?(:clj  (NanoID/nanoID @rnd/*secure-random size)
       :cljs (let [mask 0x3f]
               (loop [bytes (rnd/random-bytes size)
                      id ""]
@@ -48,7 +48,7 @@
                          size
                          (int (Math/ceil (/ (* size mask 1.1) length))))]
      (fn []
-       #?(:clj  (NanoID/custom alphabet size random step mask)
+       #?(:clj  (NanoID/custom random size alphabet step mask)
           :cljs (loop [bytes (random step)
                        id    ""]
                   (if (== (count id) size)
