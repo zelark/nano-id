@@ -146,10 +146,6 @@ This encodes current time using a lexicographical alphabet.
 
 You can find implementations in other programming languages [here](https://github.com/ai/nanoid#other-programming-languages).
 
-## License
+## Inspired by
 
-Copyright © 2018-2020 Aleksandr Zhuravlev.
-
-Code released under the [MIT License](https://github.com/zelark/nano-id/blob/master/LICENSE).
-
-Based on the original [Nano ID](https://github.com/ai/nanoid) by [Andrey Sitnik](https://github.com/ai/).
+[Nano ID](https://github.com/ai/nanoid).
