@@ -48,7 +48,9 @@ Configuration:
 `[nano-id "1.1.0"]`
 
 ## Usage
+
 The default implementation uses 64-character alphabet and generates 21-character IDs.
+
 ```clojure
 user=> (require '[nano-id.core :refer [nano-id]])
 nil
@@ -58,14 +60,18 @@ user=> (nano-id)
 ```
 
 If you want to reduce the ID size (and increase collision probability), you can pass the size as an argument.
+
 ```clojure
 user=> (nano-id 10)
 "N2g6IlJP0l"
 ```
+
 Don’t forget to check the safety of your ID size via [collision probability calculator](https://zelark.github.io/nano-id-cc/).
 
 ### IE
+
 For IE support, you need to add crypto alias:
+
 ```clojure
 (ns your-app.polyfills)
 
@@ -80,6 +86,7 @@ For IE support, you need to add crypto alias:
 ```
 
 ### Node.js
+
 If your target is node, use `@peculiar/webcrypto` polyfill:
 
 ```clojure
@@ -96,7 +103,9 @@ If your target is node, use `@peculiar/webcrypto` polyfill:
 ```
 
 ### Custom ID generator
+
 If for whatever reason the default implementation doesn't fit your project, you can build your own ID generator just passing your alphabet and ID size in `custom` function. It will give you back a new generator:
+
 ```clojure
 user=> (require '[nano-id.core :refer [custom]])
 nil
@@ -109,6 +118,7 @@ user=> (my-nano-id)
 ```
 
 Also you can provide your random bytes generator. In the example below we use this feature to encode the current time:
+
 ```clojure
 (let [alphabet "-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz"
       time-gen (fn [n]
@@ -121,15 +131,19 @@ Also you can provide your random bytes generator. In the example below we use th
   (time-id))
 "0TfMui"
 ```
+
 This encodes current time using a lexicographical alphabet.
 
 ## Tools
+
 - [Nano ID Collision Calculator](https://zelark.github.io/nano-id-cc/)
 
 ## Other implementations
+
 You can find implementations in other programming languages [here](https://github.com/ai/nanoid#other-programming-languages).
 
 ## License
+
 Copyright © 2018-2020 Aleksandr Zhuravlev.
 
 Code released under the [MIT License](https://github.com/zelark/nano-id/blob/master/LICENSE).
