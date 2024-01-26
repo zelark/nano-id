@@ -4,7 +4,7 @@ A tiny, secure, URL-friendly unique string ID generator for Clojure and ClojureS
 
 - **Secure**. It uses cryptographically strong random APIs.
 - **Compact**. It uses a larger alphabet than UUID (A-Za-z0-9_-). So ID size was reduced from 36 to 21 symbols.
-- **URL-Firendly**. It uses only URL-friendly characters. Perfect for unique identifiers in web applications.
+- **URL-Friendly**. It uses only URL-friendly characters. Perfect for unique identifiers in web applications.
 
 ```clojure
 clj -Sdeps '{:deps {nano-id/nano-id {:mvn/version "1.1.0"}}}'
